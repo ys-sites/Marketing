@@ -6,6 +6,7 @@
 import { motion } from 'motion/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import FeaturesMarquee from './components/FeaturesMarquee';
 import StatsSection from './components/StatsSection';
 import Services from './components/Services';
 import SocialProof from './components/SocialProof';
@@ -27,6 +28,7 @@ export default function App() {
 
         <OpportunitiesSection />
         <ScaleSection />
+        <FeaturesMarquee />
         <Services />
         <SocialProof />
         <ScannerSection />
