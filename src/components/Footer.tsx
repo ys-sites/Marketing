@@ -36,14 +36,14 @@ export default function Footer() {
           <div className="flex flex-col justify-center md:items-end">
             <div className="space-y-6">
               <a 
-                href="mailto:ys.mkg.sites@gmail.com" 
+                href="mailto:cloud@ysdev.ca" 
                 className="flex items-center gap-4 md:justify-end group cursor-pointer"
               >
                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-brand-blue/50 transition-colors">
                   <Mail className="w-5 h-5 text-zinc-400 group-hover:text-brand-blue transition-colors" />
                 </div>
                 <span className="text-xl font-medium text-zinc-300 group-hover:text-white transition-colors">
-                  ys.mkg.sites@gmail.com
+                  cloud@ysdev.ca
                 </span>
               </a>
               <a 
