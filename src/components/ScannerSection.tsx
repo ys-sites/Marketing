@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 export default function ScannerSection() {
   const containerRef = useRef<HTMLDivElement>(null);

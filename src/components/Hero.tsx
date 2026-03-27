@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'motion/react';
+import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Play, Sparkles, ArrowRight } from 'lucide-react';
 
 const ShootingStar = ({ delay, angle }: { delay: number, angle?: number }) => {
@@ -60,9 +60,13 @@ const StarsBackground = () => {
 
       // Keep beaming stars away from the center text area
       if (isBeaming) {
-        while (leftVal > 15 && leftVal < 85 && topVal > 20 && topVal < 80) {
-          topVal = Math.random() * 100;
-          leftVal = Math.random() * 100;
+        // Simple check instead of while loop to avoid potential hang
+        if (leftVal > 15 && leftVal < 85 && topVal > 20 && topVal < 80) {
+          if (Math.random() > 0.5) {
+            leftVal = Math.random() * 15;
+          } else {
+            leftVal = 85 + Math.random() * 15;
+          }
         }
       }
 

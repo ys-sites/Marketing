@@ -3,21 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { Suspense, lazy } from 'react';
-import { motion } from 'motion/react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-
-const FeaturesMarquee = lazy(() => import('./components/FeaturesMarquee'));
-const StatsSection = lazy(() => import('./components/StatsSection'));
-const Services = lazy(() => import('./components/Services'));
-const SocialProof = lazy(() => import('./components/SocialProof'));
-const OpportunitiesSection = lazy(() => import('./components/OpportunitiesSection'));
-const ScaleSection = lazy(() => import('./components/ScaleSection'));
-const ScannerSection = lazy(() => import('./components/ScannerSection'));
-const ContactSection = lazy(() => import('./components/ContactSection'));
-const StickyCTA = lazy(() => import('./components/StickyCTA'));
-const Footer = lazy(() => import('./components/Footer'));
+import FeaturesMarquee from './components/FeaturesMarquee';
+import StatsSection from './components/StatsSection';
+import Services from './components/Services';
+import SocialProof from './components/SocialProof';
+import OpportunitiesSection from './components/OpportunitiesSection';
+import ScaleSection from './components/ScaleSection';
+import ScannerSection from './components/ScannerSection';
+import ContactSection from './components/ContactSection';
+import StickyCTA from './components/StickyCTA';
+import Footer from './components/Footer';
 
 export default function App() {
   return (
@@ -25,23 +23,17 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        
-        <Suspense fallback={<div className="min-h-screen" />}>
-          <StatsSection />
-          <OpportunitiesSection />
-          <ScaleSection />
-          <FeaturesMarquee />
-          <Services />
-          <SocialProof />
-          <ScannerSection />
-          <ContactSection />
-        </Suspense>
+        <StatsSection />
+        <OpportunitiesSection />
+        <ScaleSection />
+        <FeaturesMarquee />
+        <Services />
+        <SocialProof />
+        <ScannerSection />
+        <ContactSection />
       </main>
-
-      <Suspense fallback={null}>
-        <Footer />
-        <StickyCTA />
-      </Suspense>
+      <Footer />
+      <StickyCTA />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useMotionTemplate } from 'motion/react';
+import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import { Heart, ShoppingCart, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function ContactSection() {

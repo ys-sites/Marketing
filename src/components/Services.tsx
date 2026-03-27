@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Globe, Zap, BarChart3, Users, Shield, Cpu } from 'lucide-react';
 
 const services = [
