@@ -16,7 +16,7 @@ export default function FeaturesMarquee() {
   return (
     <section className="py-12 border-y border-white/5 bg-black/20 overflow-hidden">
       <div className="flex items-center justify-center w-full">
-        <Marquee pauseOnHover={true} className="[--duration:240s]">
+        <Marquee pauseOnHover={true} className="[--duration:600s]">
           {features.map((feature, index) => (
             <div key={index} className="flex items-center mx-8">
               <span className="text-xl md:text-2xl font-medium text-zinc-400 whitespace-nowrap">
