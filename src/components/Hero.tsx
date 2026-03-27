@@ -4,68 +4,45 @@ import { Play, Sparkles, ArrowRight } from 'lucide-react';
 
 const ShootingStar = ({ delay, angle }: { delay: number, angle?: number }) => {
   const [pos] = useState(() => ({
-    top: `${Math.random() * 80}%`, 
+    top: `${Math.random() * 100}%`, 
     left: `-10%`, 
-    duration: Math.random() * 2 + 2, 
-    angle: angle ?? 0
+    duration: Math.random() * 1.5 + 1.5, 
+    angle: angle ?? (Math.random() * 15 + 5)
   }));
 
   return (
     <motion.div
       initial={{ x: "-10vw", y: 0, opacity: 0, scale: 0 }}
       animate={{ 
-        x: "110vw", 
+        x: "120vw", 
         y: 0, 
-        opacity: [0, 0.4, 0.4, 0],
-        scale: [0.3, 0.6, 0.5, 0.3]
+        opacity: [0, 1, 1, 0],
+        scale: [0.3, 0.8, 0.6, 0.3]
       }}
       transition={{
         duration: pos.duration,
         repeat: Infinity,
-        repeatDelay: 12,
+        repeatDelay: Math.random() * 8 + 4,
         delay: delay,
         ease: "linear",
       }}
-      className="absolute w-0.5 h-0.5 bg-white rounded-full z-[-10] pointer-events-none will-change-transform"
+      className="absolute w-0.5 h-0.5 bg-white rounded-full z-[0] pointer-events-none will-change-transform"
       style={{
         top: pos.top,
         left: pos.left,
         transform: `rotate(${pos.angle}deg)`
       }}
     >
-      {/* The Streak/Tail - Thinner and more subtle */}
+      {/* The Streak/Tail */}
       <div 
-        className="absolute top-1/2 right-0 w-[200px] h-[1px] bg-gradient-to-l from-white/40 via-white/10 to-transparent origin-right"
+        className="absolute top-1/2 right-0 w-[100px] h-[1px] bg-gradient-to-l from-white/80 via-white/20 to-transparent origin-right"
         style={{ transform: 'translateY(-50%)' }}
       />
       
-      {/* Head Glow - Smaller and more subtle */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-white/10 blur-[3px] rounded-full" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0.5 h-0.5 bg-white/40 blur-[1px] rounded-full" />
+      {/* Head Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white/30 blur-[2px] rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0.5 h-0.5 bg-white/80 blur-[1px] rounded-full" />
     </motion.div>
-  );
-};
-
-const ShootingStarGroup = ({ delay }: { delay: number }) => {
-  const [angle] = useState(() => 0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, []);
-  
-  return (
-    <>
-      <ShootingStar delay={delay} angle={angle} />
-      {!isMobile && (
-        <>
-          <ShootingStar delay={delay + 0.5} angle={angle} />
-          <ShootingStar delay={delay + 1.2} angle={angle} />
-          <ShootingStar delay={delay + 1.8} angle={angle} />
-          <ShootingStar delay={delay + 2.5} angle={angle} />
-        </>
-      )}
-    </>
   );
 };
 
@@ -73,22 +50,33 @@ const StarsBackground = () => {
   const [stars] = useState(() => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const starArray = [];
-    const count = isMobile ? 60 : 150; // Reduced stars on mobile
-    const beamingCount = isMobile ? 2 : Math.floor(Math.random() * 4) + 2;
+    const count = isMobile ? 100 : 250;
+    const beamingCount = isMobile ? 20 : 60;
     
     for (let i = 0; i < count; i++) {
+      const isBeaming = i < beamingCount;
+      let topVal = Math.random() * 100;
+      let leftVal = Math.random() * 100;
+
+      // Keep beaming stars away from the center text area
+      if (isBeaming) {
+        while (leftVal > 15 && leftVal < 85 && topVal > 20 && topVal < 80) {
+          topVal = Math.random() * 100;
+          leftVal = Math.random() * 100;
+        }
+      }
+
       starArray.push({
         id: i,
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        size: Math.random() * 1.5 + 0.5,
-        opacity: Math.random() * 0.5 + 0.2,
-        isBeaming: i < beamingCount,
-        duration: Math.random() * 3 + 2,
+        top: `${topVal}%`,
+        left: `${leftVal}%`,
+        size: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.6 + 0.2,
+        isBeaming,
+        duration: Math.random() * 2 + 1.5,
         delay: Math.random() * 5
       });
     }
-    // Shuffle to randomize which ones are beaming
     return starArray.sort(() => Math.random() - 0.5);
   });
 
@@ -97,7 +85,7 @@ const StarsBackground = () => {
       {stars.map((star) => (
         <motion.div
           key={star.id}
-          className="absolute bg-white rounded-full will-change-[opacity,transform]"
+          className="absolute bg-white rounded-full will-change-[opacity,transform,box-shadow]"
           style={{
             top: star.top,
             left: star.left,
@@ -106,8 +94,13 @@ const StarsBackground = () => {
             opacity: star.opacity,
           }}
           animate={star.isBeaming ? {
-            opacity: [star.opacity, 0.8, star.opacity],
-            scale: [1, 1.5, 1],
+            opacity: [star.opacity, 1, star.opacity],
+            scale: [1, 2.5, 1],
+            boxShadow: [
+              "0 0 0px rgba(255,255,255,0)", 
+              "0 0 15px rgba(255,255,255,1)", 
+              "0 0 0px rgba(255,255,255,0)"
+            ]
           } : {}}
           transition={star.isBeaming ? {
             duration: star.duration,
@@ -173,7 +166,7 @@ function SpotlightTrail({ mouseX, mouseY }: { mouseX: any, mouseY: any }) {
 
       points.current.forEach((point) => {
         point.age += 0.02; // Slightly faster aging
-        const opacity = Math.max(0, 0.4 - point.age * 0.1);
+        const opacity = Math.max(0, 0.7 - point.age * 0.15);
         const scale = 0.4 + point.age * 0.4;
 
         if (opacity <= 0) return;
@@ -184,7 +177,7 @@ function SpotlightTrail({ mouseX, mouseY }: { mouseX: any, mouseY: any }) {
 
         const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 125);
         gradient.addColorStop(0, `rgba(167, 139, 250, ${opacity})`);
-        gradient.addColorStop(0.4, `rgba(139, 92, 246, ${opacity * 0.4})`);
+        gradient.addColorStop(0.4, `rgba(139, 92, 246, ${opacity * 0.6})`);
         gradient.addColorStop(0.8, 'rgba(139, 92, 246, 0)');
 
         ctx.fillStyle = gradient;
@@ -195,7 +188,7 @@ function SpotlightTrail({ mouseX, mouseY }: { mouseX: any, mouseY: any }) {
         // Core glow
         ctx.beginPath();
         ctx.arc(0, 0, 6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.3})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.6})`;
         ctx.fill();
 
         ctx.restore();
@@ -217,7 +210,7 @@ function SpotlightTrail({ mouseX, mouseY }: { mouseX: any, mouseY: any }) {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-60"
+      className="absolute inset-0 pointer-events-none opacity-90"
       style={{ filter: 'blur(20px)' }}
     />
   );
@@ -250,16 +243,13 @@ export default function Hero() {
       {/* Enhanced Spotlight Trail Effect */}
       <SpotlightTrail mouseX={springX} mouseY={springY} />
 
-      {/* Shooting Stars - Grouped bursts for a shower effect */}
-      <ShootingStarGroup delay={0} />
-      <ShootingStarGroup delay={8} />
-      <ShootingStarGroup delay={16} />
-      
-      <div className="hidden md:block">
-        <ShootingStarGroup delay={4} />
-        <ShootingStarGroup delay={12} />
-        <ShootingStarGroup delay={20} />
-      </div>
+      {/* Shooting Stars - Max 6 random stars */}
+      <ShootingStar delay={0} />
+      <ShootingStar delay={1.5} />
+      <ShootingStar delay={3} />
+      <ShootingStar delay={4.5} />
+      <ShootingStar delay={6} />
+      <ShootingStar delay={7.5} />
       
       <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-purple/10 blur-[150px] rounded-full -z-10 animate-pulse" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-blue/15 blur-[120px] rounded-full -z-10" />
