@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Instagram, Mail, Phone, LayoutGrid } from 'lucide-react';
+import { Instagram, Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -11,11 +11,8 @@ export default function Footer() {
           <div>
             <button 
               onClick={() => window.location.reload()} 
-              className="flex items-center gap-2 mb-6 cursor-pointer hover:opacity-80 transition-opacity"
+              className="flex items-center gap-3 mb-6 cursor-pointer hover:opacity-80 transition-opacity"
             >
-              <div className="w-10 h-10 bg-brand-blue/20 rounded-lg flex items-center justify-center border border-brand-blue/30">
-                <LayoutGrid className="w-6 h-6 text-brand-blue" />
-              </div>
               <span className="font-bold text-xl tracking-tight">YS Marketing Solutions</span>
             </button>
             <p className="text-zinc-400 text-base leading-relaxed mb-8 max-w-md">
