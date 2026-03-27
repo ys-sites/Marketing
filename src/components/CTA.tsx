@@ -17,14 +17,14 @@ export default function CTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#contact"
-              className="w-full sm:w-auto bg-white text-black px-10 py-5 rounded-full font-bold text-xl hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto bg-white text-black px-10 py-5 rounded-full font-bold text-xl hover:bg-zinc-200 transition-colors duration-200 flex items-center justify-center gap-2 group cursor-pointer"
             >
               Book a Free Strategy Call
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-200" />
             </a>
           </div>
           
-          <p className="mt-8 text-zinc-500 text-sm">
+          <p className="mt-8 text-zinc-400 text-sm">
             No commitment required. 100% free consultation.
           </p>
         </div>

@@ -58,11 +58,9 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.98 }}
-              className="glass p-6 md:p-8 rounded-[24px] md:rounded-[32px] hover:border-white/20 transition-all group cursor-pointer will-change-transform"
+              className="glass p-6 md:p-8 rounded-[24px] md:rounded-[32px] hover:bg-white/5 hover:border-white/20 transition-colors duration-300 group cursor-pointer"
             >
-              <div className={`${service.bg} w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform`}>
+              <div className={`${service.bg} w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:bg-white/10 transition-colors duration-300`}>
                 <service.icon className={`w-5 h-5 md:w-6 md:h-6 ${service.color}`} />
               </div>
               <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{service.title}</h3>

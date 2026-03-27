@@ -47,13 +47,15 @@ export default function SocialProof() {
             <div className="flex gap-4">
               <button 
                 onClick={prev}
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors"
+                aria-label="Previous testimonial"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors duration-200 cursor-pointer"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button 
                 onClick={next}
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors"
+                aria-label="Next testimonial"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors duration-200 cursor-pointer"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -92,12 +94,15 @@ export default function SocialProof() {
                   <img 
                     src={testimonials[currentIndex].image} 
                     alt={testimonials[currentIndex].name}
+                    width={56}
+                    height={56}
                     className="w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-brand-purple"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                   <div>
                     <h4 className="font-bold text-base md:text-lg">{testimonials[currentIndex].name}</h4>
-                    <p className="text-xs md:text-zinc-500">{testimonials[currentIndex].role}</p>
+                    <p className="text-xs md:text-zinc-400">{testimonials[currentIndex].role}</p>
                   </div>
                 </div>
               </motion.div>

@@ -444,8 +444,8 @@ export default function ScannerSection() {
         </div>
 
         <div className="container">
-          <canvas id="particleCanvas" ref={particleCanvasRef}></canvas>
-          <canvas id="scannerCanvas" ref={scannerCanvasRef}></canvas>
+          <canvas id="particleCanvas" ref={particleCanvasRef} aria-hidden="true"></canvas>
+          <canvas id="scannerCanvas" ref={scannerCanvasRef} aria-hidden="true"></canvas>
 
           <div className="scanner"></div>
 

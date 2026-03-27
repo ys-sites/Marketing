@@ -44,18 +44,11 @@ export default function ScaleSection() {
           initial={{ opacity: 0, y: 40, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          whileHover="hover"
-          whileTap="hover"
           viewport={{ once: true, margin: "-50px" }}
           className="order-1 lg:order-2 relative cursor-pointer group"
         >
-          <motion.div 
-            variants={{
-              initial: { scale: 1 },
-              hover: { scale: 1.01 }
-            }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="bg-[#0D0A14] p-6 md:p-12 rounded-[40px] md:rounded-[60px] border border-brand-purple/30 shadow-[0_0_60px_rgba(139,92,246,0.08)] group-hover:border-brand-purple/60 group-hover:shadow-[0_0_100px_rgba(139,92,246,0.3)] transition-all duration-500 aspect-[4/3] flex items-center justify-center will-change-transform"
+          <div 
+            className="bg-[#0D0A14] p-6 md:p-12 rounded-[40px] md:rounded-[60px] border border-brand-purple/30 shadow-[0_0_60px_rgba(139,92,246,0.08)] hover:border-brand-purple/60 hover:shadow-[0_0_100px_rgba(139,92,246,0.3)] transition-all duration-500 aspect-[4/3] flex items-center justify-center"
           >
             <div className="w-full max-w-md bg-zinc-900/40 rounded-[24px] md:rounded-[32px] border border-white/5 p-6 md:p-10 relative overflow-visible backdrop-blur-sm">
               {/* UI Mockup Content */}
@@ -73,7 +66,7 @@ export default function ScaleSection() {
 
               <div className="h-24 md:h-40 w-full bg-zinc-800/10 rounded-xl md:rounded-2xl mb-6 md:mb-10 border border-white/5" />
 
-              <div className="flex items-center gap-4 md:gap-8 text-[9px] md:text-[11px] font-bold uppercase tracking-widest text-zinc-600">
+              <div className="flex items-center gap-4 md:gap-8 text-[9px] md:text-[11px] font-bold uppercase tracking-widest text-zinc-400">
                 <div className="flex items-center gap-2 md:gap-3">
                   <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-brand-blue/40" />
                   1,240 Likes
@@ -96,7 +89,7 @@ export default function ScaleSection() {
                 <span className="text-[10px] md:text-sm font-bold whitespace-nowrap text-white">New Lead Captured</span>
               </motion.div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -303,11 +303,11 @@ export default function Hero() {
             <div className="button-glow-container w-full sm:w-auto">
               <a 
                 href="#contact"
-                className="relative flex items-center justify-center gap-2 md:gap-3 px-6 md:px-10 py-3 md:py-4 bg-white text-black rounded-full font-semibold text-base md:text-lg hover:bg-zinc-200 transition-all group shadow-[0_0_30px_rgba(255,255,255,0.2)] w-full sm:w-auto"
+                className="relative flex items-center justify-center gap-2 md:gap-3 px-6 md:px-10 py-3 md:py-4 bg-white text-black rounded-full font-semibold text-base md:text-lg hover:bg-zinc-200 transition-colors duration-200 group shadow-[0_0_30px_rgba(255,255,255,0.2)] w-full sm:w-auto cursor-pointer"
               >
                 <span className="hidden sm:inline">Schedule a Free Strategy Session</span>
                 <span className="sm:hidden">Free Strategy Session</span>
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </a>
             </div>
           </motion.div>

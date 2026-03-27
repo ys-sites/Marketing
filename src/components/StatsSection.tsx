@@ -55,7 +55,7 @@ export default function StatsSection() {
                   prefix={stat.prefix} 
                 />
               </div>
-              <div className="text-[10px] md:text-sm font-bold text-zinc-500 tracking-widest uppercase">
+              <div className="text-[10px] md:text-sm font-bold text-zinc-400 tracking-widest uppercase">
                 {stat.label}
               </div>
             </div>

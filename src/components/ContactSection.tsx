@@ -102,12 +102,10 @@ export default function ContactSection() {
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05, x: 10 }}
-              whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-              className="bg-zinc-900/50 p-6 rounded-[32px] flex items-center gap-6 border border-white/5 cursor-pointer group hover:bg-zinc-900/80 transition-colors will-change-transform"
+              className="bg-zinc-900/50 p-6 rounded-[32px] flex items-center gap-6 border border-white/5 cursor-pointer group hover:bg-zinc-900/80 transition-colors duration-300"
             >
-              <div className="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-red-500/20 transition-colors duration-300">
                 <Heart className="w-7 h-7 text-red-500" />
               </div>
               <div>
@@ -119,12 +117,10 @@ export default function ContactSection() {
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05, x: 10 }}
-              whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-              className="bg-zinc-900/50 p-6 rounded-[32px] flex items-center gap-6 border border-white/5 cursor-pointer group hover:bg-zinc-900/80 transition-colors will-change-transform"
+              className="bg-zinc-900/50 p-6 rounded-[32px] flex items-center gap-6 border border-white/5 cursor-pointer group hover:bg-zinc-900/80 transition-colors duration-300"
             >
-              <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500/20 transition-colors duration-300">
                 <ShoppingCart className="w-7 h-7 text-orange-500" />
               </div>
               <div>
@@ -157,75 +153,81 @@ export default function ContactSection() {
 
           <form className="relative z-10 space-y-8" onSubmit={handleSubmit}>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Full Name</label>
+              <label htmlFor="fullName" className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Full Name</label>
               <input 
                 type="text" 
+                id="fullName"
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
                 required
                 placeholder="John Doe" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-colors duration-200"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Business Email</label>
+              <label htmlFor="email" className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Business Email</label>
               <input 
                 type="email" 
+                id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
                 placeholder="john@company.com" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-colors duration-200"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Business Name</label>
+              <label htmlFor="businessName" className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Business Name</label>
               <input 
                 type="text" 
+                id="businessName"
                 name="businessName"
                 value={formData.businessName}
                 onChange={handleChange}
                 required
                 placeholder="Acme Corp" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-colors duration-200"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Website <span className="text-zinc-600 lowercase font-normal tracking-normal">(optional)</span></label>
+              <label htmlFor="website" className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Website <span className="text-zinc-500 lowercase font-normal tracking-normal">(optional)</span></label>
               <input 
                 type="url" 
+                id="website"
                 name="website"
                 value={formData.website}
                 onChange={handleChange}
                 placeholder="https://example.com" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-colors duration-200"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Phone Number</label>
+              <label htmlFor="phone" className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Phone Number</label>
               <input 
                 type="tel" 
+                id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 required
                 placeholder="+1 (555) 000-0000" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-colors duration-200"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+              <label htmlFor="service" className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">
                 Select Service
               </label>
               <div className="relative">
                 <select 
+                  id="service"
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all appearance-none text-white cursor-pointer"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-colors duration-200 appearance-none text-white cursor-pointer"
                 >
                   <option value="" disabled className="bg-zinc-900 text-zinc-500">Select a service...</option>
                   <option value="Landing-Page" className="bg-zinc-900 text-white">Conversion-Optimized Landing Page</option>
@@ -241,13 +243,13 @@ export default function ContactSection() {
             <button 
               type="submit"
               disabled={status === 'submitting' || status === 'success'}
-              className={`w-full font-bold py-4 md:py-5 rounded-full text-base md:text-lg transition-all flex items-center justify-center gap-2 ${
+              className={`w-full font-bold py-4 md:py-5 rounded-full text-base md:text-lg transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer ${
                 status === 'success' 
                   ? 'bg-green-500 text-white shadow-lg shadow-green-500/20' 
                   : status === 'error'
                   ? 'bg-red-500 text-white shadow-lg shadow-red-500/20'
-                  : 'bg-[#ffb84d] hover:bg-[#ffa726] text-black shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] active:scale-[0.98]'
-              } disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100`}
+                  : 'bg-[#ffb84d] hover:bg-[#ffa726] text-black shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40'
+              } disabled:opacity-70 disabled:cursor-not-allowed`}
             >
               {status === 'submitting' ? (
                 'Sending...'

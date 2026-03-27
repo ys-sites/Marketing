@@ -24,7 +24,7 @@ export default function StickyCTA() {
         >
           <a
             href="#contact"
-            className="w-full bg-white text-black py-3 md:py-4 rounded-2xl font-bold text-sm md:text-base shadow-2xl shadow-brand-purple/20 flex items-center justify-center gap-3 hover:scale-105 transition-transform will-change-transform"
+            className="w-full bg-white text-black py-3 md:py-4 rounded-2xl font-bold text-sm md:text-base shadow-2xl shadow-brand-purple/20 flex items-center justify-center gap-3 hover:bg-zinc-200 transition-colors duration-200 cursor-pointer"
           >
             <Calendar className="w-5 h-5" />
             Book Free Call

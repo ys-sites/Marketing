@@ -10,11 +10,9 @@ export default function OpportunitiesSection() {
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true, margin: "-50px" }}
-          className="bg-[#080912] p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-brand-blue/50 shadow-[0_0_50px_rgba(96,165,250,0.15)] group-hover:border-brand-blue/80 group-hover:shadow-[0_0_80px_rgba(96,165,250,0.35)] transition-all duration-500 relative overflow-hidden group cursor-pointer will-change-transform"
+          className="bg-[#080912] p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-brand-blue/50 shadow-[0_0_50px_rgba(96,165,250,0.15)] hover:border-brand-blue/80 hover:shadow-[0_0_80px_rgba(96,165,250,0.35)] transition-all duration-500 relative overflow-hidden group cursor-pointer"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
           
@@ -32,32 +30,28 @@ export default function OpportunitiesSection() {
                 { label: 'Social Media Posting', value: '6 hrs' },
               ].map((item) => (
                 <div key={item.label} className="flex justify-between items-center text-[10px] md:text-sm">
-                  <span className="text-zinc-500">{item.label}</span>
+                  <span className="text-zinc-400">{item.label}</span>
                   <span className="font-bold text-zinc-200">{item.value}</span>
                 </div>
               ))}
             </div>
 
             <div className="grid grid-cols-2 gap-3 md:gap-4">
-              <motion.div 
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-brand-blue/20 p-3 md:p-6 rounded-2xl md:rounded-3xl border border-brand-blue/40 transition-all group-hover:border-brand-blue/60 hover:bg-brand-blue/30"
+              <div 
+                className="bg-brand-blue/20 p-3 md:p-6 rounded-2xl md:rounded-3xl border border-brand-blue/40 transition-colors duration-300 hover:border-brand-blue/60 hover:bg-brand-blue/30"
               >
                 <div className="text-xl md:text-3xl font-bold mb-0.5 md:mb-1 text-white">$390k+</div>
-                <div className="text-[7px] md:text-[10px] text-zinc-500 uppercase tracking-wider md:tracking-[0.2em] font-bold leading-tight">
+                <div className="text-[7px] md:text-[10px] text-zinc-400 uppercase tracking-wider md:tracking-[0.2em] font-bold leading-tight">
                   <span className="hidden sm:inline">Projected Annual Value</span>
                   <span className="sm:hidden">Annual Value</span>
                 </div>
-              </motion.div>
-              <motion.div 
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-brand-purple/10 p-3 md:p-6 rounded-2xl md:rounded-3xl border border-brand-purple/20 transition-all group-hover:border-brand-purple/50 hover:bg-brand-purple/20"
+              </div>
+              <div 
+                className="bg-brand-purple/10 p-3 md:p-6 rounded-2xl md:rounded-3xl border border-brand-purple/20 transition-colors duration-300 hover:border-brand-purple/50 hover:bg-brand-purple/20"
               >
                 <div className="text-xl md:text-3xl font-bold mb-0.5 md:mb-1 text-white">13x</div>
-                <div className="text-[7px] md:text-[10px] text-zinc-500 uppercase tracking-wider md:tracking-[0.2em] font-bold leading-tight">ROI Year 1</div>
-              </motion.div>
+                <div className="text-[7px] md:text-[10px] text-zinc-400 uppercase tracking-wider md:tracking-[0.2em] font-bold leading-tight">ROI Year 1</div>
+              </div>
             </div>
           </div>
         </motion.div>
