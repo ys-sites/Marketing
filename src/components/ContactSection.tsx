@@ -49,17 +49,19 @@ export default function ContactSection() {
         source: 'Website Contact Form'
       };
 
-      // Use no-cors to avoid CORS preflight blocking the request.
-      // LeadConnector webhook triggers do not return CORS headers for browser requests,
-      // so the response is opaque — if fetch doesn't throw, the payload was sent.
-      await fetch('https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/81fb41cd-51ad-4c85-8fe6-dd1e66478885', {
+      // Use standard CORS + JSON so failed webhook calls surface clearly.
+      const response = await fetch('https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/81fb41cd-51ad-4c85-8fe6-dd1e66478885', {
         method: 'POST',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
-          'Content-Type': 'text/plain',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
       });
+
+      if (!response.ok) {
+        throw new Error(`Webhook request failed with status ${response.status}`);
+      }
 
       setStatus('success');
       setFormData({ fullName: '', email: '', phone: '', businessName: '', website: '', service: '' });
