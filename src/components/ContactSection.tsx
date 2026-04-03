@@ -49,7 +49,7 @@ export default function ContactSection() {
         source: 'Website Contact Form'
       };
 
-      const response = await fetch('https://services.leadconnectorhq.com/hooks/o7aUwpKbtkP4AOP0pEjC/webhook-trigger/aef47d41-27f9-466c-b11f-95946124ada5', {
+      const response = await fetch('https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/d1722097-448d-44c1-8811-7c700d79f2c0', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
