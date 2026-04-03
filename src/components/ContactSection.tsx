@@ -22,6 +22,7 @@ export default function ContactSection() {
     service: ''
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const springX = useSpring(mouseX, { damping: 50, stiffness: 400 });
   const springY = useSpring(mouseY, { damping: 50, stiffness: 400 });
@@ -44,11 +45,14 @@ export default function ContactSection() {
       return;
     }
 
+    setErrorMessage('');
     setStatus('submitting');
 
     try {
       // Format payload for LeadConnector/GoHighLevel
       const payload = {
+        submissionId: crypto.randomUUID(),
+        submittedAt: new Date().toISOString(),
         name: formData.fullName,
         first_name: formData.fullName.split(' ')[0],
         last_name: formData.fullName.split(' ').slice(1).join(' '),
@@ -83,6 +87,23 @@ export default function ContactSection() {
             throw new Error(`Webhook request failed with status ${response.status}`);
           }
 
+          const responseText = await response.text();
+          let responseData: { id?: string; status?: string } = {};
+
+          try {
+            responseData = responseText ? JSON.parse(responseText) : {};
+          } catch {
+            responseData = {};
+          }
+
+          const hasExecutionId = typeof responseData.id === 'string' && responseData.id.length > 0;
+          const statusText = responseData.status ?? '';
+          const indicatesExecution = statusText.toLowerCase().includes('trigger execution server');
+
+          if (!hasExecutionId && !indicatesExecution) {
+            throw new Error('Webhook accepted request but did not trigger workflow execution. Verify this is the published production webhook URL, not a test endpoint.');
+          }
+
           lastError = null;
           break;
         } catch (error) {
@@ -105,6 +126,7 @@ export default function ContactSection() {
       setTimeout(() => setStatus('idle'), 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
+      setErrorMessage(error instanceof Error ? error.message : 'Unknown submission error');
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
@@ -308,6 +330,9 @@ export default function ContactSection() {
                 </>
               )}
             </button>
+            {status === 'error' && errorMessage ? (
+              <p className="text-xs text-red-400 leading-relaxed">{errorMessage}</p>
+            ) : null}
           </form>
         </motion.div>
       </div>
