@@ -49,18 +49,17 @@ export default function ContactSection() {
         source: 'Website Contact Form'
       };
 
-      const response = await fetch('https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/d1722097-448d-44c1-8811-7c700d79f2c0', {
+      // Use no-cors to avoid CORS preflight blocking the request.
+      // LeadConnector webhook triggers do not return CORS headers for browser requests,
+      // so the response is opaque — if fetch doesn't throw, the payload was sent.
+      await fetch('https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/d1722097-448d-44c1-8811-7c700d79f2c0', {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Content-Type': 'text/plain',
         },
         body: JSON.stringify(payload),
       });
-
-      if (response.status >= 400) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
 
       setStatus('success');
       setFormData({ fullName: '', email: '', phone: '', businessName: '', website: '', service: '' });
