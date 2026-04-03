@@ -52,7 +52,7 @@ export default function ContactSection() {
       // Use no-cors to avoid CORS preflight blocking the request.
       // LeadConnector webhook triggers do not return CORS headers for browser requests,
       // so the response is opaque — if fetch doesn't throw, the payload was sent.
-      await fetch('https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/d1722097-448d-44c1-8811-7c700d79f2c0', {
+      await fetch('https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/81fb41cd-51ad-4c85-8fe6-dd1e66478885', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
