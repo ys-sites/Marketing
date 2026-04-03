@@ -50,18 +50,26 @@ export default function ContactSection() {
 
     try {
       // Format payload for LeadConnector/GoHighLevel
+      const firstName = formData.fullName.split(' ')[0] || '';
+      const lastName = formData.fullName.split(' ').slice(1).join(' ');
+
       const payload = {
         submissionId: crypto.randomUUID(),
         submittedAt: new Date().toISOString(),
         name: formData.fullName,
-        first_name: formData.fullName.split(' ')[0],
-        last_name: formData.fullName.split(' ').slice(1).join(' '),
+        first_name: firstName,
+        firstName,
+        last_name: lastName,
+        lastName,
         email: formData.email,
         phone: formData.phone,
         companyName: formData.businessName,
+        company_name: formData.businessName,
+        businessName: formData.businessName,
         website: formData.website,
         service: formData.service,
-        source: 'Website Contact Form'
+        source: 'Website Contact Form',
+        form_name: 'Website Contact Form',
       };
 
       // Retry transient failures to improve reliability on spotty connections.
