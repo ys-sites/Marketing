@@ -2,6 +2,12 @@ import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import { Heart, ShoppingCart, CheckCircle2, AlertCircle } from 'lucide-react';
 
+const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/81fb41cd-51ad-4c85-8fe6-dd1e66478885';
+const MAX_RETRIES = 3;
+const REQUEST_TIMEOUT_MS = 10000;
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export default function ContactSection() {
   const formRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
@@ -33,6 +39,11 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (status === 'submitting') {
+      return;
+    }
+
     setStatus('submitting');
 
     try {
@@ -49,18 +60,44 @@ export default function ContactSection() {
         source: 'Website Contact Form'
       };
 
-      // Use standard CORS + JSON so failed webhook calls surface clearly.
-      const response = await fetch('https://services.leadconnectorhq.com/hooks/RnC5wPRRY4UMzJxMbcg4/webhook-trigger/81fb41cd-51ad-4c85-8fe6-dd1e66478885', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+      // Retry transient failures to improve reliability on spotty connections.
+      let lastError: Error | null = null;
 
-      if (!response.ok) {
-        throw new Error(`Webhook request failed with status ${response.status}`);
+      for (let attempt = 1; attempt <= MAX_RETRIES; attempt += 1) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+        try {
+          const response = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+            signal: controller.signal,
+            keepalive: true,
+          });
+
+          if (!response.ok) {
+            throw new Error(`Webhook request failed with status ${response.status}`);
+          }
+
+          lastError = null;
+          break;
+        } catch (error) {
+          lastError = error instanceof Error ? error : new Error('Unknown webhook submission error');
+
+          if (attempt < MAX_RETRIES) {
+            await sleep(500 * attempt);
+          }
+        } finally {
+          clearTimeout(timeoutId);
+        }
+      }
+
+      if (lastError) {
+        throw lastError;
       }
 
       setStatus('success');
