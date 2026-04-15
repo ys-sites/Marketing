@@ -36,8 +36,8 @@ function Counter({ value, suffix = '', prefix = '', decimals = 0 }: CounterProps
 
 export default function StatsSection() {
   const stats = [
-    { label: 'LEADS GENERATED', value: 10, suffix: 'k+', prefix: '' },
-    { label: 'CLIENT REVENUE', value: 5, suffix: 'M+', prefix: '$' },
+    { label: 'LEADS GENERATED', value: 5, suffix: 'k', prefix: '' },
+    { label: 'CLIENT REVENUE', value: 500, suffix: 'k', prefix: '$' },
     { label: 'CONVERSION LIFT', value: 35, suffix: '%', prefix: '' },
     { label: 'ACTIVE CLIENTS', value: 25, suffix: '+', prefix: '' },
   ];
